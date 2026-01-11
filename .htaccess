@@ -9,8 +9,8 @@ PassengerEnabled On
 PassengerAppRoot /home/logicalv/repositories/HostingTestPython
 
 # Set the WSGI application entry point
+# Passenger will automatically use passenger_wsgi.py
 PassengerAppType wsgi
-PassengerStartupFile app.py
 
 # Enable friendly error pages (disable in production for security)
 PassengerFriendlyErrorPages on
