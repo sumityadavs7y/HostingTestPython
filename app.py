@@ -1,5 +1,5 @@
 import os
-from flask import Flask
+from flask import Flask, Response
 
 app = Flask(__name__)
 
@@ -11,13 +11,17 @@ def hello_world():
     # Get all environment variables for display
     env_var = os.environ.get('CUSTOM_MESSAGE', 'No CUSTOM_MESSAGE environment variable set')
     
-    return f'''
-    <h1>Hello, {name}!</h1>
-    <h2>Environment Variable:</h2>
-    <p><strong>CUSTOM_MESSAGE:</strong> {env_var}</p>
-    <hr>
-    <p><em>Set the NAME and CUSTOM_MESSAGE environment variables to customize this message.</em></p>
-    '''
+    # Create plain text response
+    response_text = f"""Hello, {name}!
+
+Environment Variable:
+CUSTOM_MESSAGE: {env_var}
+
+Set the NAME and CUSTOM_MESSAGE environment variables to customize this message.
+"""
+    
+    # Return response with text/html content type
+    return Response(response_text, mimetype='text/html')
 
 if __name__ == '__main__':
     # Get port from environment variable or default to 5000
